@@ -1,4 +1,4 @@
-getgenv().lauthi_url = "YOUR SERVERS IPV4 ADDR"
+getgenv().lauthi_url = "YOUR SERVERS IPV4 ADDR"
 
 local params = {
 	Url = getgenv().lauthi_url,
