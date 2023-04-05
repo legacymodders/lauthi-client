@@ -1,3 +1,12 @@
+if getexecutorname and type(getexecutorname) == "function" then
+    if getexecutorname() == "ScriptWare" then
+    	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
+	end
+else
+	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
+end
+
+
 getgenv().lauthi_url = "YOUR SERVERS IPV4 ADDR"
 
 local params = {
