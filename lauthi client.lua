@@ -1,22 +1,25 @@
 getgenv().lauthi_url = "http://YOUR SERVERS IPV4 ADDR"
 
 local sw
+local supported = false
 
-function checkExec()
-    if getexecutorname and type(getexecutorname) == "function" then
-        if not getexecutorname() == "ScriptWare" then
-        	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
-    	  end
-        if getexecutorname() == "ScriptWare" then
-	      sw = true;
-	  end
-    else
-    	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
+if getexecutorname and type(getexecutorname) == "function" then
+    if getexecutorname() == "ScriptWare" then
+        sw = true
+        supported = true
     end
 end
 
-if not syn then
-   checkExec() 
+if syn then
+   supported = true
+end
+
+if KRNL_LOADED then
+   supported = true 
+end
+
+if not supported then
+    game.Players.LocalPlayer:Kick("sorry, but your executor is not supported by lauthi.")
 end
 
 local req
@@ -28,7 +31,7 @@ if syn then
     })
 end
 
-if sw then
+if sw or KRNL_LOADED then
 	local params = {
 		Url = getgenv().lauthi_url,
 		Method = "GET"
