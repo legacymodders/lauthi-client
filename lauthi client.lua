@@ -1,5 +1,5 @@
 if getexecutorname and type(getexecutorname) == "function" then
-    if getexecutorname() == "ScriptWare" then
+    if not getexecutorname() == "ScriptWare" then
     	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
 	end
 else
