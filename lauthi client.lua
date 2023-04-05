@@ -1,4 +1,4 @@
-getgenv().lauthi_url = "http://YOUR SERVERS IPV4 ADDR"
+getgenv().lauthi_url = "http://35.179.92.115"
 
 local sw
 local supported = false
@@ -39,6 +39,7 @@ if sw or KRNL_LOADED then
 	
     req = request(params)
 end
+
 
 local whitelist
 local username = string.split(req.Body, "\"")[2]
