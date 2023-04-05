@@ -1,20 +1,41 @@
-if getexecutorname and type(getexecutorname) == "function" then
-    if not getexecutorname() == "ScriptWare" then
+getgenv().lauthi_url = "http://YOUR SERVERS IPV4 ADDR"
+
+local sw
+
+function checkExec()
+    if getexecutorname and type(getexecutorname) == "function" then
+        if not getexecutorname() == "ScriptWare" then
+        	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
+    	  end
+        if getexecutorname() == "ScriptWare" then
+	      sw = true;
+	  end
+    else
     	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
-	end
-else
-	game.Players.LocalPlayer:Kick("sorry, but your executor does not support lauthi!")
+    end
 end
 
+if not syn then
+   checkExec() 
+end
 
-getgenv().lauthi_url = "YOUR SERVERS IPV4 ADDR"
+local req
 
-local params = {
-	Url = getgenv().lauthi_url,
-	Method = "GET"
-}
+if syn then
+    req = syn.request({
+        Url = getgenv().lauthi_url,
+        Method = "GET"
+    })
+end
 
-local req = request(params)
+if sw then
+	local params = {
+		Url = getgenv().lauthi_url,
+		Method = "GET"
+	}
+	
+    req = request(params)
+end
 
 local whitelist
 local username = string.split(req.Body, "\"")[2]
