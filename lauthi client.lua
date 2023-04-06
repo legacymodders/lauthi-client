@@ -1,5 +1,5 @@
 local config = {
-	lauthi_url = "http://13.42.105.183"
+	lauthi_url = "http://YOUR SERVERS IPv4 ADDR"
 }
 table.freeze(config)
 
