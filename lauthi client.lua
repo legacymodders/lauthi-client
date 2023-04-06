@@ -1,4 +1,7 @@
-getgenv().lauthi_url = "http://35.179.92.115"
+local config = {
+	lauthi_url = "http://YOUR SERVERS IPv4 ADDR"
+}
+table.freeze(config)
 
 local sw
 local supported = false
@@ -22,35 +25,54 @@ if not supported then
     game.Players.LocalPlayer:Kick("sorry, but your executor is not supported by lauthi.")
 end
 
-local req
+local resp
 
 if syn then
-    req = syn.request({
-        Url = getgenv().lauthi_url,
+    local params = {
+        Url = config.lauthi_url,
         Method = "GET"
-    })
+    }
+
+    local resp = {
+        req = syn.request(params)
+    }
+    table.freeze(resp)
 end
 
 if sw or KRNL_LOADED then
 	local params = {
-		Url = getgenv().lauthi_url,
+		Url = config.lauthi_url,
 		Method = "GET"
 	}
 	
-    req = request(params)
+	resp = {
+		req = request(params)
+	}
+	table.freeze(resp)
 end
 
+local user = {
+	name = string.split(resp.req.Body, "\"")[2]
+}
+table.freeze(user)
 
-local whitelist
-local username = string.split(req.Body, "\"")[2]
-
-if string.find(req.Body, "true") then
-	whitelist = true
+if string.find(resp.req.Body, "true") then
+	status = {
+		whitelisted = true
+	}
+	
+	table.freeze(status)
 else
-	whitelist = false
+	status = {
+		whitelisted = false
+	}
+	
+	table.freeze(status)
 end
 
-print("lauthi whitelisted =", whitelist)
-if whitelist then
-	print("lauthi username =", username)
+if status.whitelisted then
+	print("whitelisted successfully!")
+	print("welcome", user.name)
+else
+	print("test")
 end
