@@ -67,7 +67,6 @@ else
 	status = {
 		whitelisted = false
 	}
-	
 	table.freeze(status)
 end
 
