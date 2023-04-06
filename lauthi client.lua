@@ -1,5 +1,5 @@
 local config = {
-	lauthi_url = "http://YOUR SERVERS IPv4 ADDR"
+	lauthi_url = "http://13.42.105.183"
 }
 table.freeze(config)
 
@@ -52,12 +52,13 @@ if sw or KRNL_LOADED then
 	table.freeze(resp)
 end
 
+
 local user = {
-	name = string.split(resp.req.Body, "\"")[2]
+	name = resp.req.Body:split(",")[2]
 }
 table.freeze(user)
 
-if string.find(resp.req.Body, "true") then
+if resp.req.Body:split(",")[1] == "true" then
 	status = {
 		whitelisted = true
 	}
@@ -67,6 +68,7 @@ else
 	status = {
 		whitelisted = false
 	}
+	
 	table.freeze(status)
 end
 
@@ -74,5 +76,6 @@ if status.whitelisted then
 	print("whitelisted successfully!")
 	print("welcome", user.name)
 else
-	print("test")
+	print("whitelist failed.")
+	print("you are not currently whitelisted!")
 end
