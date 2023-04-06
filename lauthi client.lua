@@ -22,7 +22,8 @@ if KRNL_LOADED then
 end
 
 if not supported then
-    game.Players.LocalPlayer:Kick("sorry, but your executor is not supported by lauthi.")
+    warn("sorry, but your executor is not supported by lauthi.")
+    return
 end
 
 local resp
